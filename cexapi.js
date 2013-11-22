@@ -112,9 +112,9 @@ var _crypto = require('crypto');
   api_call('balance', param, 1, '', callback)
  }
 
- function current_orders(couple, callback)
+ function open_orders(couple, callback)
  {
-  api_call('current_orders', new Object(), 1, couple, callback);
+  api_call('open_orders', new Object(), 1, couple, callback);
  }
 
  function cancel_order(id, callback)
@@ -140,6 +140,6 @@ var _crypto = require('crypto');
  exports.order_book = order_book;
  exports.trade_history = trade_history;
  exports.balance = balance;
- exports.current_orders = current_orders;
+ exports.open_orders = open_orders;
  exports.cancel_order = cancel_order;
  exports.place_order = place_order;

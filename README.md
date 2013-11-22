@@ -40,7 +40,7 @@ api_secret - your API secret code
 2. order_book(couple = 'GHS/BTC') - get order
 3. trade_history(since = 1, couple = 'GHS/BTC') -  get all order
 4. balance() - get your balance
-5. current_orders(couple = 'GHS/BTC') - get open order
+5. open_orders(couple = 'GHS/BTC') - get open order
 6. cancel_order(order_id) - cancel order №order_id
 7. place_order(ptype = 'buy', amount = 1, price = 1, couple = 'GHS/BTC') - create order
 ```
@@ -51,9 +51,9 @@ api_secret - your API secret code
 
 ####Connect and get balance:
 ```js
-var api = require("./cexapi.js");
-api.init(username, api_key, api_secret);
-api.balance(function(param){
+var cexapi = require("./cexapi.js");
+cexapi.init(username, api_key, api_secret);
+cexapi.balance(function(param){
 console.log(param);
 });
 ```
@@ -63,7 +63,7 @@ console.log(param);
 
 ####Get balance:
 ```js      
-api.balance(function(param){
+cexapi.balance(function(param){
 console.log(param);
 });
 ```
@@ -73,7 +73,7 @@ console.log(param);
 
 ####Get API ticker:
 ```js
-api.ticker('GHS/BTC', function(param){
+cexapi.ticker('GHS/BTC', function(param){
 console.log(param);
 });
 ```
@@ -83,7 +83,7 @@ console.log(param);
 
 ####Get order book:
 ```js
-api.order_book('BF1/BTC',function(param){
+cexapi.order_book('BF1/BTC',function(param){
 console.log(param);
 });
 ```
@@ -93,7 +93,7 @@ console.log(param);
 
 ####Get your current active orders:
 ```js
-api.current_orders('BF1/BTC',function(param){
+cexapi.open_orders('BF1/BTC',function(param){
 console.log(param);
 });
 ```
@@ -103,7 +103,7 @@ console.log(param);
 
 ####Place new order:
 ```js
-api.place_order('buy', 0.001, 1.7, 'BF1/BTC', function(param){
+cexapi.place_order('buy', 0.001, 1.7, 'BF1/BTC', function(param){
 console.log(param);
 });
 ```
@@ -113,7 +113,7 @@ console.log(param);
 
 ####Place another order (GHS/BTC):
 ```js
-api.place_order('buy', 0.01, 0.10789, 'GHS/BTC', function(param){
+cexapi.place_order('buy', 0.01, 0.10789, 'GHS/BTC', function(param){
 console.log(param);
 });
 ```
@@ -123,7 +123,7 @@ console.log(param);
 
 ####Cancel order:
 ```js
-api.cancel_order(6219145, function(param){
+cexapi.cancel_order(6219145, function(param){
 console.log(param);
 });
 ```
