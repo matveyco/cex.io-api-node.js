@@ -16,7 +16,7 @@ CEX.IO API integration. Node.js sources.
 
 ###3. Init a class 
 ```js
-  cexapi.init(username,api_key,api_secret)
+  cexapi.create(username,api_key,api_secret)
 ```
 username - your username on cex.io
 api_key - your API key
@@ -52,7 +52,7 @@ api_secret - your API secret code
 ####Connect and get balance:
 ```js
 var cexapi = require("./cexapi.js");
-cexapi.init(username, api_key, api_secret);
+cexapi.create(username, api_key, api_secret);
 cexapi.balance(function(param){
 console.log(param);
 });
