@@ -14,8 +14,8 @@ function create(username, api_key, api_secret) //Set variable
 
 function __signature() //Generate signature
 {
-    string = _nonce + _username + _api_key
-    hmac = _crypto.createHmac('sha256', _api_secret);
+    var string = _nonce + _username + _api_key
+    var hmac = _crypto.createHmac('sha256', _api_secret);
     hmac.setEncoding('hex');
     hmac.write(string);
     hmac.end();
@@ -139,6 +139,20 @@ function workers(callback) {
     api_call('ghash.io/workers', {}, 1, null, callback);
 };
 
+
+/*exports = {
+    create: create,
+    api_call: api_call,
+    ticker: ticker,
+    order_book: order_book,
+    trade_history: trade_history,
+    balance: balance,
+    open_orders: open_orders,
+    cancel_order: cancel_order,
+    place_order: place_order,
+    hashrate: hashrate,
+    workers: worker
+}*/
 
 exports.create = create;
 exports.api_call = api_call;
