@@ -10,7 +10,7 @@ function create(username, api_key, api_secret) //Set variable
     _username = username;
     _api_key = api_key;
     _api_secret = api_secret;
-}
+};
 
 function __signature() //Generate signature
 {
@@ -21,12 +21,12 @@ function __signature() //Generate signature
     hmac.end();
     var temp = hmac.read();
     return temp.toUpperCase()
-}
+};
 
 function __nonce() //Get timestamp as nonce
 {
     _nonce = Math.round(new Date().getTime() / 1000);
-}
+};
 
 function __post(url, param, callback) //Send post request via requstify
 {
@@ -66,7 +66,7 @@ function __post(url, param, callback) //Send post request via requstify
     request.write(post_data);
     request.end();
     return body;
-}
+};
 
 function api_call(method, param, is_private, couple, callback) //Api call
 {
@@ -96,31 +96,31 @@ function api_call(method, param, is_private, couple, callback) //Api call
         }
     }
     __post(url, param, callback);
-}
+};
 
 function ticker(couple, callback) {
     api_call('ticker', {}, 0, couple, callback);
-}
+};
 
 function order_book(couple, callback) {
     api_call('order_book', {}, 0, couple, callback);
-}
+};
 
 function trade_history(since, couple, callback) {
     api_call('trade_history', {since: since}, 0, couple, callback);
-}
+};
 
 function balance(callback) {
     api_call('balance', {}, 1, '', callback);
-}
+};
 
 function open_orders(couple, callback) {
     api_call('open_orders', {}, 1, couple, callback);
-}
+};
 
 function cancel_order(id, callback) {
     api_call('cancel_order', {id: id}, 1, '', callback);
-}
+};
 
 function place_order(type, amount, price, couple, callback) {
     params = {
@@ -129,15 +129,15 @@ function place_order(type, amount, price, couple, callback) {
         price: price
     };
     api_call('place_order', params, 1, couple, callback);
-}
+};
 
 function hashrate(callback) {
     api_call('ghash.io/hashrate', {}, 1, null, callback);
-}
+};
 
 function workers(callback) {
     api_call('ghash.io/workers', {}, 1, null, callback);
-}
+};
 
 
 exports.create = create;
@@ -150,3 +150,4 @@ exports.open_orders = open_orders;
 exports.cancel_order = cancel_order;
 exports.place_order = place_order;
 exports.hashrate = hashrate;
+exports.workers = workers;
