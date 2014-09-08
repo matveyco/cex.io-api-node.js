@@ -43,6 +43,8 @@ api_secret - your API secret code
 5. open_orders(couple = 'GHS/BTC') - get open order
 6. cancel_order(order_id) - cancel order №order_id
 7. place_order(ptype = 'buy', amount = 1, price = 1, couple = 'GHS/BTC') - create order
+8. hashrate() - get the pool hashrate
+9. workers() - get your worker information
 ```
      
 ####c) Full API documentation: https://cex.io/api
