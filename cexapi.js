@@ -5,15 +5,13 @@ var _nonce = '';
 var _https = require('https');
 var _crypto = require('crypto');
 
-function create(username, api_key, api_secret) //Set variable
-{
+function create(username, api_key, api_secret) {
     _username = username;
     _api_key = api_key;
     _api_secret = api_secret;
 };
 
-function __signature() //Generate signature
-{
+function __signature() {
     var string = _nonce + _username + _api_key
     var hmac = _crypto.createHmac('sha256', _api_secret);
     hmac.setEncoding('hex');
@@ -23,15 +21,11 @@ function __signature() //Generate signature
     return temp.toUpperCase()
 };
 
-function __nonce() //Get timestamp as nonce
-{
+function __nonce() {
     _nonce = Math.round(new Date().getTime() / 1000);
 };
 
-function __post(url, param, callback) //Send post request via requstify
-{
- 
-    console.log(url);
+function __post(url, param, callback) {
     var post_data = '';
     var body = '';
     for (var key in param) {
@@ -59,31 +53,28 @@ function __post(url, param, callback) //Send post request via requstify
             body += chunk;
         });
         res.on('end', function () {
-            console.log(body);
             callback(JSON.parse(body));
         });
-    });//Return answer as object in callback
+    });
     request.write(post_data);
     request.end();
     return body;
 };
 
-function api_call(method, param, is_private, couple, callback) //Api call
-{
-
+function api_call(method, param, is_private, couple, callback) {
     var url = '/api/' + method + (method.indexOf('ghash.io') > -1 ? '' : '/'); //generate uri
-    if (couple == undefined) {
-        var couple = '';
+    if (couple === undefined) {
+        couple = '';
     } else {
         if (couple.length > 5) {
             url = url + couple + '/';
         }
     }
-    if (param == undefined) {
-        var param = new Object();
+    if (param === undefined) {
+        param = {};
     } //generate param in needed
-    if (is_private == undefined) {
-        var is_private = 0;
+    if (is_private === undefined) {
+        is_private = 0;
     }
     else {
         if (is_private == 1) {
@@ -123,7 +114,7 @@ function cancel_order(id, callback) {
 };
 
 function place_order(type, amount, price, couple, callback) {
-    params = {
+    var params = {
         type: type,
         amount: amount,
         price: price
@@ -138,21 +129,6 @@ function hashrate(callback) {
 function workers(callback) {
     api_call('ghash.io/workers', {}, 1, null, callback);
 };
-
-
-/*exports = {
-    create: create,
-    api_call: api_call,
-    ticker: ticker,
-    order_book: order_book,
-    trade_history: trade_history,
-    balance: balance,
-    open_orders: open_orders,
-    cancel_order: cancel_order,
-    place_order: place_order,
-    hashrate: hashrate,
-    workers: worker
-}*/
 
 exports.create = create;
 exports.api_call = api_call;
