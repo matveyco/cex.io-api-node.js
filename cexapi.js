@@ -66,7 +66,7 @@ function api_call(method, param, is_private, couple, callback) {
     if (couple === undefined) {
         couple = '';
     } else {
-        if (couple.length > 5) {
+        if (couple != undefined && couple.length > 5) {
             url = url + couple + '/';
         }
     }
@@ -102,7 +102,7 @@ function trade_history(since, couple, callback) {
 };
 
 function balance(callback) {
-    api_call('balance', {}, 1, '', callback);
+    api_call('balance', {}, 1, null, callback);
 };
 
 function open_orders(couple, callback) {
@@ -110,7 +110,7 @@ function open_orders(couple, callback) {
 };
 
 function cancel_order(id, callback) {
-    api_call('cancel_order', {id: id}, 1, '', callback);
+    api_call('cancel_order', {id: id}, 1, null, callback);
 };
 
 function place_order(type, amount, price, couple, callback) {
